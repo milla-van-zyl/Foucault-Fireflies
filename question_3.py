@@ -29,6 +29,22 @@ t = sol.t
 x = sol.y[0]
 y = sol.y[1]
 
+
+# Period calculator
+
+def period_estimate(t, x):
+	crossings = [] ### Makes an empty list storing times when the pendulum crosses x=0 upward (i.e going from -ve to +ve)
+	for i in range(len(x)-1): ### Loops through every point besides the last one as we are looking ahead to x[i+1]
+		if x[i] < 0 and x[i+1] >= 0: ### Pendulum is on the -ve side AND the next point is zero or +ve, so must have gone through centre between t[i] & t[i+1]
+			crossings.append(t[i])
+
+	if len(crossings) < 2: ### We cannot mesaure a period if there are more than 2 crossings
+		return None
+
+	return 2 * np.mean(np.diff(crossings)) ### 1 full period is 2x the "crossings", so we take the mean time between the crossings and x2
+
+print("Estimated period:", period_estimate(t, x))
+
 # Plotting x(t) and y(t)
 
 plt.figure(figsize=(10,4))
@@ -40,3 +56,5 @@ plt.title("Pendulum displacement against time")
 plt.legend()
 plt.grid(True)
 plt.show()
+
+
