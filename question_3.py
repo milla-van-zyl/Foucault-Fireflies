@@ -57,4 +57,5 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
+# Right now, the initial amplitude is quite large (x = 1), so we only need to change the x initial condition to be smaller and then plot the graphs on latex!
 
