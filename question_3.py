@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Parameters
-
+m = 28 # kg
 g = 9.81 # m/s^2
 L = 67 # metres
 gamma = 0.01 # Friction coefficient
@@ -12,18 +12,18 @@ def pendulum(t, state):
 	x, y, u_x, u_y = state
 	dxdt = u_x
 	dydt = u_y
-	du_xdt = -(g/L) * x - gamma * u_x
-	du_ydt = -(g/L) * y - gamma * u_y
+	du_xdt = -x/L**2 * (L**2*(u_x**2 + u_y**2) - (x*u_y - y*u_x)**2/(L**2 - x**2 - y**2)) - (g/L**2)*x*np.sqrt(L**2 - x**2 - y**2) - (gamma/m)*u_x
+	du_ydt = -y/L**2 * (L**2*(u_x**2 + u_y**2) - (x*u_y - y*u_x)**2/(L**2 - x**2 - y**2)) - (g/L**2)*y*np.sqrt(L**2 - x**2 - y**2) - (gamma/m)*u_y
 
 	return [dxdt, dydt, du_xdt, du_ydt]
 
-timespan = (0, 360)
+timespan = (0, 180)
 
 # Initial conditions (x, y, u_x, u_y) which we will change for next questions
 
 initial_state = [1.0, 0.0, 0.0, 0.0]
 
-sol = solve_ivp(pendulum, timespan, initial_state, t_eval = np.linspace(0, 360, 10000))
+sol = solve_ivp(pendulum, timespan, initial_state, t_eval = np.linspace(0, 180, 10000))
 
 t = sol.t
 x = sol.y[0]
@@ -57,5 +57,4 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# Right now, the initial amplitude is quite large (x = 1), so we only need to change the x initial condition to be smaller and then plot the graphs on latex!
 
