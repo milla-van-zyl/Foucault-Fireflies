@@ -1,3 +1,4 @@
+from scipy.signal import hilbert # Needed for the Hilbert Transform Envelope
 from scipy.integrate import solve_ivp
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,13 +18,13 @@ def pendulum(t, state):
 
 	return [dxdt, dydt, du_xdt, du_ydt]
 
-timespan = (0, 180)
+timespan = (0, 120)
 
 # Initial conditions (x, y, u_x, u_y) which we will change for next questions
 
-initial_state = [1.0, 0.0, 0.0, 0.0]
+initial_state = [1.0, 0.0, 0.1, 0.1]
 
-sol = solve_ivp(pendulum, timespan, initial_state, t_eval = np.linspace(0, 180, 10000))
+sol = solve_ivp(pendulum, timespan, initial_state, t_eval = np.linspace(0, 120, 10000))
 
 t = sol.t
 x = sol.y[0]
@@ -45,15 +46,21 @@ def period_estimate(t, x):
 
 print("Estimated period:", period_estimate(t, x))
 
+# Envelope function
+
+envelope = np.abs(hilbert(x))
+
 # Plotting x(t) and y(t)
 
-plt.figure(figsize=(10,4))
+plt.figure(figsize=(8,4))
 plt.plot(t, x, label="x(t)")
 plt.plot(t, y, label="y(t)")
+plt.plot(t, envelope, linewidth=2, label="Envelope Function")
 plt.xlabel("Time (s)")
 plt.ylabel("Displacement (m)")
 plt.title("Pendulum displacement against time")
 plt.legend()
+plt.tight_layout()
 plt.grid(True)
 plt.show()
 
