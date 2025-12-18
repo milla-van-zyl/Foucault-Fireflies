@@ -14,10 +14,12 @@ import numpy as np
 import ODE_RK4 
 import matplotlib.pyplot as plt
 
-# Some
+# Set some parameters
+# V0 and gamma are changed for different cases 
+
 goL = 9.81/67   # g/L where L is the length of the pendulum
 gamma = 0.0 # friction parameter
-V0 = [1,0,0.5,1] # the initial condition [x0,vx0,y0,vy0]
+V0 = [1,0,0,0] # the initial condition [x0,vx0,y0,vy0]
 dt = 0.001 # time step
 fig_dt = 0.01 # plotting interval 
 t0 = 0 # start ime
@@ -57,8 +59,6 @@ if __name__ == "__main__":
   # V_list : the values saved for graphics: as a list off [x, vx, y, vy ]   
     
   t_list, V_list =  ODE_RK4.runge_kutta_2nd_order_system(F, V0, t0, t_end, dt, fig_dt)
-
-
   
   # The code below gerenartes a number of graphs
 
@@ -80,35 +80,6 @@ if __name__ == "__main__":
   plt.legend(loc=1, prop={'size': 16})
   plt.tight_layout(rect=[0.02, 0, 0.98, 1], pad=0.5)
   plt.show()
-
-#   # Plot min val of x
-#   min_list, max_list = ODE_RK4.get_min_max(t_list, x_list)
-#   t_list_min = [val[0] for val in min_list]
-#   v_list_min = [val[1] for val in min_list]
-#   plt.plot(t_list_min, v_list_min)
-#   plt.xlabel("t", fontsize=20)
-#   plt.ylabel("min(x(t))", fontsize=20)
-#   plt.tight_layout(rect=[0.02, 0, 0.98, 1], pad=0.5)
-#   plt.show()
-# 
-#   # Plot max val of x
-#   t_list_max = [val[0] for val in max_list]
-#   v_list_max = [val[1] for val in max_list]
-#   plt.plot(t_list_max, v_list_max)
-#   plt.xlabel("t", fontsize=20)
-#   plt.ylabel("max(x(t))", fontsize=20)
-#   plt.tight_layout(rect=[0.02, 0, 0.98, 1], pad=0.5)
-#   plt.show()
-
-#   # Plot min and max on the same figure
-#   plt.figure(figsize=(10,6))
-#   plt.plot(t_list_min, v_list_min, 'r-', linewidth=2, label='Local Minima', alpha=0.7)
-#   plt.plot(t_list_max, v_list_max, 'g-', linewidth=2, label = 'Local Maxima', alpha=0.7)
-#   plt.legend()
-#   plt.xlabel("Time, t (s)", fontsize=14)
-#   plt.ylabel("Displacement, x (m)", fontsize=14)
-#   plt.tight_layout(rect=[0.02, 0, 0.98, 1], pad=0.5)
-#   plt.show()
 
   # Plot x,y trajectory
   plt.figure(figsize=(8.5,6))
