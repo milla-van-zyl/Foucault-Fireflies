@@ -1,4 +1,5 @@
 #Used in the following section of the report: 2-D Simulation of a Nonlinear Pendulum - Case 1
+
 # from scipy.signal import hilbert ## Needed for the Hilbert Transform Envelope
 from scipy.integrate import solve_ivp
 import numpy as np
