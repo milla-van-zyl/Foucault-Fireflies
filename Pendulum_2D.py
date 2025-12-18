@@ -9,6 +9,7 @@ dvy/dt = -goL*y-gamma*vy
 
 @author: Bernard
 """
+#Used in the following section of the report: Numerical Simulation of a 2-D Linear Pendulum
 
 import numpy as np
 import ODE_RK4 
@@ -98,3 +99,4 @@ if __name__ == "__main__":
 
   # Print the average value of a period of oscillation
   print("T=",ODE_RK4.period(t_list_min))
+
