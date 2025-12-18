@@ -47,21 +47,20 @@ def period_estimate(t, x):
 print("Estimated period:", period_estimate(t, x))
 
 # Envelope function
-
 #envelope = np.abs(hilbert(x))
 
 # Plotting x(t) and y(t)
-
-plt.figure(figsize=(8,4))
-plt.plot(t, x, label="x(t)")
-plt.plot(t, y, label="y(t)")
+plt.figure(figsize=(10,5))
+plt.plot(t, x, 'b-', linewidth=3, label='x(t)')
+plt.plot(t, y, 'r-', label='y(t)')
 #plt.plot(t, envelope, linewidth=2, label="Envelope Function")
-plt.xlabel("Time (s)")
-plt.ylabel("Displacement (m)")
-plt.title("Pendulum displacement against time")
-plt.legend()
-plt.tight_layout()
-plt.grid(True)
+plt.xlabel("Time, t (s)", fontsize=30)
+plt.ylabel("Displacement, x(t) (m)", fontsize=30)
+plt.tick_params(axis='both', which='major', labelsize=30)
+plt.grid(True, alpha=0.3)
+plt.legend(loc=1, prop={'size': 30})
+plt.tight_layout(rect=[0.02, 0, 0.98, 1], pad=0.5)
 plt.show()
+
 
 
