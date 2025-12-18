@@ -1,6 +1,5 @@
 % Ashwin Foucault Q6 %
-%--------------------%
-% N.B. Signal Processing Toolbox is required!
+% N.B. Signal Processing Toolbox is required! %
 
 clear
 
