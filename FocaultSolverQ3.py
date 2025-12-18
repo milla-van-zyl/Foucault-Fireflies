@@ -4,6 +4,7 @@
 from scipy.integrate import solve_ivp
 import numpy as np
 import matplotlib.pyplot as plt
+plt.rcParams["font.family"] = "Times New Roman"
 
 # Parameters
 m = 28 # kg
